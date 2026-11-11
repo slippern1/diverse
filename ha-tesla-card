@@ -1,0 +1,479 @@
+type: picture-elements
+image: local/images/tesla-3-top.jpeg?v=1
+elements:
+  - type: state-icon
+    entity: button.tessie_force_data_update
+    style:
+      top: 6.5%
+      left: 10%
+      color: '#039be5'
+    tap_action:
+      action: call-service
+      service: button.press
+      service_data: {}
+      target:
+        entity_id: button.tessie_force_data_update
+    double_tap_action: none
+    hold_action: none
+  - type: state-label
+    entity: button.tessie_force_data_update
+    tap_action:
+      action: call-service
+      service: button.press
+      service_data: {}
+      target:
+        entity_id: button.tessie_force_data_update
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 96%
+      left: 53%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(0,0,0)
+    prefix: 'Last update: '
+  - type: state-label
+    entity: device_tracker.tessie_location_tracker
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 7%
+      left: 92%
+      font-size: 100%
+      font-weight: normal
+      color: black
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tessie_online
+        state: 'on'
+    elements:
+      - type: icon
+        icon: mdi:link-variant
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.5%
+          left: 83%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tessie_online
+        state_not: 'on'
+    elements:
+      - type: icon
+        icon: mdi:link-variant-off
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.5%
+          left: 83%
+          color: black
+  - type: conditional
+    conditions:
+      - entity: switch.tessie_sentry_mode
+        state: 'on'
+    elements:
+      - type: icon
+        icon: mdi:shield-car
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 77%
+          color: black
+  - type: conditional
+    conditions:
+      - entity: switch.tessie_sentry_mode
+        state_not: 'on'
+    elements:
+      - type: icon
+        icon: mdi:shield-alert-outline
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 77%
+          color: red
+  - type: conditional
+    conditions:
+      - entity: lock.tessie_doors
+        state: locked
+    elements:
+      - type: icon
+        icon: mdi:lock
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 70.5%
+          color: black
+  - type: conditional
+    conditions:
+      - entity: lock.tessie_doors
+        state_not: locked
+    elements:
+      - type: icon
+        icon: mdi:lock-open-variant
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 70.5%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: update.tessie_software_update
+        state_not: 'on'
+    elements:
+      - type: icon
+        icon: mdi:upload-off
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 64%
+          color: black
+  - type: conditional
+    conditions:
+      - entity: update.tessie_software_update
+        state: 'on'
+    elements:
+      - type: icon
+        icon: mdi:upload
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 64%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: climate.tessie_hvac_climate_system
+        state: 'off'
+    elements:
+      - type: icon
+        icon: mdi:fan-off
+        tap_action: preform-action
+        action: climate.set_preset_mode
+        data:
+          preset_mode: defrost
+        target:
+          device_id: d79b1452fddb6125d907a8acf7470b18
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 58%
+          color: black
+  - type: conditional
+    conditions:
+      - entity: climate.tessie_hvac_climate_system
+        state: heat_cool
+    elements:
+      - type: icon
+        icon: mdi:air-conditioner
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 58%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: sensor.tessie_tpms_front_left
+        state_not: 43
+    elements:
+      - type: icon
+        icon: mdi:car-tire-alert
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.9%
+          left: 51.5%
+          color: red
+  - type: conditional
+    conditions:
+      - entity: sensor.tessie_tpms_front_right
+        state_not: 43
+    elements:
+      - type: icon
+        icon: mdi:car-tire-alert
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.9%
+          left: 51.5%
+          color: red
+  - type: conditional
+    conditions:
+      - entity: sensor.tessie_tpms_rear_left
+        state_not: 43
+    elements:
+      - type: icon
+        icon: mdi:car-tire-alert
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.9%
+          left: 51.5%
+          color: red
+  - type: conditional
+    conditions:
+      - entity: sensor.tessie_tpms_rear_right
+        state_not: 43
+    elements:
+      - type: icon
+        icon: mdi:car-tire-alert
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.9%
+          left: 51.5%
+          color: red
+  - type: state-label
+    entity: binary_sensor.tessie_doors
+    attribute: Driver Rear
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 30%
+      left: 40%
+      color: black
+  - type: state-label
+    entity: binary_sensor.tessie_doors
+    attribute: Driver Front
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 30%
+      left: 60%
+      color: black
+  - type: state-label
+    entity: binary_sensor.tessie_doors
+    attribute: Passenger Rear
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 70%
+      left: 40%
+      color: black
+  - type: state-label
+    entity: binary_sensor.tessie_doors
+    attribute: Passenger Front
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 70%
+      left: 60%
+      color: black
+  - type: state-label
+    entity: cover.tessie_frunk
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 50%
+      left: 85%
+      color: white
+  - type: state-label
+    entity: cover.tessie_trunk
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 50%
+      left: 21%
+      color: white
+  - type: conditional
+    conditions:
+      - entity: cover.tessie_charger_door
+        state: open
+    elements:
+      - type: icon
+        icon: mdi:ev-plug-tesla
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 31%
+          left: 21%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: cover.tessie_charger_door
+        state_not: open
+    elements:
+      - type: icon
+        icon: mdi:ev-plug-tesla
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 31%
+          left: 21%
+          color: black
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tessie_charger
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: sensor.tessie_charging_rate
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 26%
+          left: 21%
+          font-size: 100%
+          font-weight: normal
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tessie_charger
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: binary_sensor.tessie_charger
+        attribute: charging_state
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 22%
+          left: 21%
+          font-size: 100%
+          font-weight: normal
+          color: '#039be5'
+  - type: state-label
+    entity: sensor.tessie_temperature_inside
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 50%
+      left: 50%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(255,255,255)
+  - type: icon
+    icon: mdi:thermometer
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 50%
+      left: 41%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(255,255,255)
+  - type: state-label
+    entity: sensor.tessie_temperature_outside
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 23%
+      left: 80%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(0,0,0)
+  - type: icon
+    icon: mdi:thermometer
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 23%
+      left: 71%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(0,0,0)
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tessie_ischarging
+        state: 'on'
+      - entity: device_tracker.tessie_location_tracker
+        state: home
+    elements:
+      - type: icon
+        icon: mdi:home-lightning-bolt-outline
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 84.7%
+          left: 55%
+          color: green
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tessie_ischarging
+        state: 'on'
+      - entity: device_tracker.tessie_location_tracker
+        state_not: home
+    elements:
+      - type: icon
+        icon: mdi:ev-station
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 84.7%
+          left: 55%
+          color: green
+  - type: custom:button-card
+    entity: sensor.tessie_battery
+    show_icon: false
+    show_name: false
+    show_state: true
+    styles: null
+    card:
+      - width: 270px
+      - height: 24px
+      - padding: 0px
+      - background: |
+          [[[ 
+            const level = entity.state;
+            let color = '#4caf50';
+
+            if (level <= 10)
+              color = '#f44336';
+            else if (level <= 20)
+              color = '#ff9800';
+
+            return `linear-gradient(
+              90deg,
+              ${color} 0%,
+              ${color} ${level}%,
+              rgba(255,255,255,0.15) ${level}%,
+              rgba(255,255,255,0.15) 100%
+            )`;
+          ]]]
+      - border-radius: 12px
+      - border: 1px solid rgba(255,255,255,0.3)
+      - color: black
+      - font-size: 14px
+      - font-weight: bold
+    state_display: |
+      [[[ return entity.state + '%'; ]]]
+    style:
+      top: 85%
+      left: 53%
